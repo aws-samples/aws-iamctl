@@ -62,20 +62,28 @@ def diff(profile_name_1, account_name_1, profile_name_2, account_name_2, output)
         print(Fore.YELLOW + 'Please initialize using "iamctl init"')
     else:
         output_directory = fix_me_a_directory(output)
-        harvest1 = Harvester(profile_name_1, account_name_1, output_directory)
-        harvest2 = Harvester(profile_name_2, account_name_2, output_directory)
+        skip_harvest = False
 
-        #This will harvest all the iam roles from account-1 and write it to an extract file under output/ directory
-        harvest1.harvest_iam_roles_from_account()
+        if  (os.path.isfile(f'{output_directory}/{account_name_1}_{profile_name_1}_iam_tuples.csv') and
+             os.path.isfile(f'{output_directory}/{account_name_2}_{profile_name_2}_iam_tuples.csv')):
+            file1 = f'{output_directory}/{account_name_1}_{profile_name_1}_iam_tuples.csv'
+            file2 = f'{output_directory}/{account_name_2}_{profile_name_2}_iam_tuples.csv'
+            while skip_harvest not in ('Y','N'):
+                skip_harvest = input("Harvest files appear to exist, skip harvest?(Y/N)").upper()
 
-        #This will harvest all the iam roles from account-2 and write it to an extract file under output/ directory
-        harvest2.harvest_iam_roles_from_account()
+        if skip_harvest != 'Y':
+            harvest1 = Harvester(profile_name_1, account_name_1, output_directory)
+            harvest2 = Harvester(profile_name_2, account_name_2, output_directory)
+            #This will harvest all the iam roles from account-1 and write it to an extract file under output/ directory
+            harvest1.harvest_iam_roles_from_account()
+            #This will harvest all the iam roles from account-2 and write it to an extract file under output/ directory
+            harvest2.harvest_iam_roles_from_account()
 
         #instantiating Differ object with extract file name from each of the harvest objects for both accounts.
-        differ = Differ(harvest1.filename, harvest2.filename, account_name_1, account_name_2, output_directory)
+        differ = Differ(file1, file2, account_name_1, account_name_2, output_directory)
 
         #This will generate the diff files comparing both accounts for IAM roles and prints the summary report to console
-        differ.generate_diff_and_summary() 
+        differ.generate_diff_and_summary()
 
 def init():
     print(Fore.BLUE + 'Initializing')
