@@ -42,6 +42,7 @@ def fix_me_a_directory(output):
             os.makedirs(output_directory)
         return output_directory
     else:
+        output = os.path.normpath(output)
         return output
 
 def check_if_init():
