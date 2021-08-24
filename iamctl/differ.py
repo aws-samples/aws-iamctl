@@ -210,7 +210,7 @@ class Differ:
         account_2_diff_account_1_roles =  list(set([(item[0],item[1]) for item in account_2_diff_account_1]))
         print("Number of roles from %s not in %s: %d" %(self.account_2_tag,self.account_1_tag, len(account_2_diff_account_1_roles)))
         headerrow =('rolename', 'path')
-        filename = "roles_in_" + self.account_2_tag + "_but_not_in_" + self.account_2_tag + ".csv"
+        filename = "roles_in_" + self.account_2_tag + "_but_not_in_" + self.account_1_tag + ".csv"
         self.write_to_csv(account_2_diff_account_1_roles, headerrow, filename)
 
         account_2_diff_account_1_service_linked_roles= [tup for tup in account_2_diff_account_1_roles if tup[1].startswith('/aws-service-role/')]
