@@ -37,7 +37,7 @@ This section describes how to install and run the IAMCTL tool.
 
 1. At the command line, enter the following command:
 
-pip install git+ssh://git@github.com:aws-samples/aws-iamctl.git
+pip install git+ssh://git@github.com/aws-samples/aws-iamctl.git
 
 You will see output similar to the following:
 
