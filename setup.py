@@ -30,7 +30,7 @@ requires = [
     'setuptools-scm==3.3.3',
     'six==1.12.0',
     'terminaltables==3.1.0',
-    'urllib3==1.24.1'
+    'urllib3==1.26.17'
 ]
 
 setup(name='iamctl',
