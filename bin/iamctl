@@ -12,6 +12,14 @@
 #   express or implied. See the License for the specific language governing 
 #   permissions and limitations under the License.
 
+# avoiding any other misalignments in the code
+try:
+    # for Python >=3.10
+    from collections.abc import Mapping
+except ImportError:
+    # for Python <3.10-
+    from collections import Mapping
+
 import iamctl.iamctl
 import sys
 
