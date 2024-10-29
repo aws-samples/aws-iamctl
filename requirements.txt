@@ -1,13 +1,13 @@
-boto3==1.9.124
-botocore==1.12.124
+boto3==1.28.73
+botocore==1.31.73
 colorama==0.4.1
 docutils==0.14
 jmespath==0.9.4
 progress==1.5
 pyfiglet==0.8.post1
 python-dateutil==2.8.0
-s3transfer==0.2.0
+s3transfer==0.7.0
 setuptools-scm==3.3.3
 six==1.12.0
 terminaltables==3.1.0
-urllib3==1.24.1
+urllib3==2.0.7
